@@ -41,8 +41,9 @@ jobs:
         shell: pwsh
         run: |
           "__version__ = `"$env:APP_VERSION`"" | Out-File -FilePath core/version.py -Encoding utf8
+          Push-Location electron
           npm version --no-git-tag-version --allow-same-version $env:APP_VERSION
-        working-directory: electron
+          Pop-Location
 
       - name: Prepare Electron builder config
         shell: pwsh
